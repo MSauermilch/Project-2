@@ -27,7 +27,7 @@ CREATE DATABASE pixelsdb;
 
 -- CREATE TABLE 'pixels' (
 --     'id' INT(11) AUTO_INCREMENT NOT NULL,
---     'user_id' INT references users(id),
+--     'user_id' INT references users(id),  **This is a foreign key which we probably won't need due to Sequelize
 --     'date' DATETIME NOT NULL,
 --     'mood_id' INT references mood(id),
 --     'caffeine' INT,

@@ -27,6 +27,7 @@ module.exports = function(app) {
     });
   });
 
+  // This route saves a pixel to the database
   app.post("/api/pixels", function(req, res) {
     // each pixel consists of a date, moodId, caffeine, alcohol, exercise, screen, and sleep
     // the object that is passed should be
