@@ -1,22 +1,67 @@
+var connection = require("../config/config.js")
+
+$(document).ready(function() {
+
+  var $calendar = $("#calendar");
+
+  function objToSql(ob) {
+    var arr =[]
+      for(var key in ob) {
+        var value = ob[key];
+        if(Object.hasOwnProperty.call(ob, key)) {
+          if(typeof value === "string" && value.indexOf(" ") >= 0) {
+            value = "'" + value + "'";
+          }
+          arr.push(key + "=" + value)
+        }
+      }
+      return arr.toString();
+  }
+
+  var Calendar = function(tableInput, cb) {
+    var queryString = "SELECT * FROM track";
+    connection.query(queryString, function(err, result) {
+      if(err) {
+        throw err;
+      }
+      cb(result);
+    })
+  }
+
+  var update = function(table, objColVals, conditon, cb) {
+    var queryString = "UPDATE" + table;
+
+    queryString += " SET ";
+    queryString += objToSql(objColVals);
+    queryString += " WHERE ";
+    QueryString += conditon;
+
+    console.log(queryString);
+  }
+
+}
+
+
+
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+//var $exampleText = $("#example-text");
+//var $exampleDescription = $("#example-description");
+//var $submitBtn = $("#submit");
+
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveCalendar: function(data) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/example",
+      data: JSON.stringify(data)
     });
   },
-  getExamples: function() {
+  getCalendar: function(data) {
     return $.ajax({
       url: "api/examples",
       type: "GET"

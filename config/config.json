@@ -9,17 +9,24 @@
     "database": "pixelsdb",
     "host": "localhost",
     "dialect": "mysql"
+
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "testdb",
-    "host": "localhost",
+    "password": "password",
+    "database": "tracker",
+    "host": "127.0.0.1",
     "dialect": "mysql",
-    "logging": false
+    "logging": false,
+    "port": 3306
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "username":"root",
+    "password":"password",
+    "database": "tracker",
+    "host":"127.0.0.1",
+    "port":3306
   }
 }
