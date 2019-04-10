@@ -1,6 +1,20 @@
 DROP DATABASE IF EXISTS pixelsdb;
 CREATE DATABASE pixelsdb;
 
+-- ==============
+-- =INSTRUCTIONS=
+-- ==============
+-- In command line type 
+-- "mysql -u root"
+-- This gets you in the mysql command line interface
+-- type
+-- "source db/schema.sql"
+-- to execute the file and create the database
+-- type
+-- "exit"
+-- to get out of the mysql interface
+
+
 -- USE pixelsdb;
 
 -- CREATE TABLE 'users' (
