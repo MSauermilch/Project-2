@@ -192,8 +192,42 @@ a.article, a.article:hover {
     margin: 5px auto;
 }
 
+/* ---------------------------------------------------
+    Floating Actions
+----------------------------------------------------- */
 
+.bigIcon {
+    content: url(https://www.dinggly.com/wp-content/uploads/2017/02/performance-tracking-icon-500px.jpg);
+}
 
+.mood {
+    content: url(https://cdn.dribbble.com/users/327034/screenshots/1072997/icon.png);
+    height: 40px;
+}
+
+.coffee {
+    content: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgcLP3es3g6qgu28vAqddqbSe12a_vQ1SB6kOVVo2uLgi1uVFm);
+}
+
+.drinks {
+    content: url(https://t3.ftcdn.net/jpg/01/37/37/08/500_F_137370865_4ZSRkKnY0eSpTu7pxV4EgnYq1CavBpe6.jpg);
+}
+
+.sleep {
+    content: url(http://icons.iconarchive.com/icons/sbstnblnd/plateau/512/Apps-sleep-icon.png)
+}
+
+/* ---------------------------------------------------
+    Create Your Own List
+----------------------------------------------------- */
+
+#input_listName {
+    text-align: center;
+}
+
+#btn_createList {
+    padding: 1px 45px;;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -227,4 +261,96 @@ a.article, a.article:hover {
         transform: rotate(-45deg) translate(1px, -1px);
     }
 
+    .modal-backdrop {
+        display:none;
+    }
+
+    .modal-open .modal {
+        width: 300px;
+        margin: 0 auto;
+    }
+}
+
+.modal-title {
+    text-align: left;
+}
+
+
+.cross-close {
+    width: 40px;
+    margin-left: 410px;
+}
+
+form {
+    font-size: 30px;
+}
+
+#mood, #caffeine {
+    font-size: 30px;
+    padding-right: 25px;
+}
+
+.butt1 {
+    background-color:#3f51b5;
+    height: 31px;
+    width: 31px;
+    cursor: pointer;
+    margin-left: 78px;
+}
+
+.butt2 {
+    background-color:#f44336;
+    height: 31px;
+    width: 31px;
+    cursor: pointer;
+}
+
+.butt3 {
+    background-color:#ff9800;
+    height: 31px;
+    width: 31px;
+    cursor: pointer;
+}
+
+.butt4 {
+    background-color:#ffeb3b;
+    height: 31px;
+    width: 31px;
+    cursor: pointer;
+}
+
+.butt5 {
+    background-color:#8bc34a;
+    height: 31px;
+    width: 31px;
+    cursor: pointer;
+}
+
+.butt1:hover {
+    background-color:gray;
+    color:white;
+}
+
+.butt2:hover {
+    background-color:gray;
+    color:white;
+}
+
+.butt3:hover {
+    background-color:gray;
+    color:white;
+}
+
+.butt4:hover {
+    background-color:gray;
+    color:white;
+}
+
+.butt5:hover {
+    background-color:gray;
+    color:white;
+}
+
+textarea {
+    width: 50px;
 }
