@@ -1,32 +1,21 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-    "password": "PizzaPizza69",
-=======
     "password": null,
->>>>>>> f1d825e7ac0e5da801d7dd3392710068bd7879a3
-    "database": "pixelsdb",
+    "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql"
-
   },
   "test": {
     "username": "root",
-    "password": "password",
-    "database": "tracker",
-    "host": "127.0.0.1",
+    "password": null,
+    "database": "testdb",
+    "host": "localhost",
     "dialect": "mysql",
-    "logging": false,
-    "port": 3306
+    "logging": false
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql",
-    "username":"root",
-    "password":"password",
-    "database": "tracker",
-    "host":"127.0.0.1",
-    "port":3306
+    "dialect": "mysql"
   }
 }
