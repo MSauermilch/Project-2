@@ -1,11 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
-    "database": "tracker",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": 3306
+    "password": null,
+    "database": "pixeldb",
+    "host": "localhost",
+    "dialect": "mysql"
+
   },
   "test": {
     "username": "root",
