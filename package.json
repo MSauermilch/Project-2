@@ -11,12 +11,25 @@
   },
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "dotenv": "^6.2.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.2",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.5",
     "sequelize": "^4.43.1"
+=======
+    "dotenv": "^6.0.0",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.4",
+<<<<<<< HEAD
+    "sequelize": "^4.43.1"
+=======
+    "sequelize": "^5.2.15"
+>>>>>>> f1d825e7ac0e5da801d7dd3392710068bd7879a3
+>>>>>>> master
   },
   "devDependencies": {
     "chai": "^4.1.2",
