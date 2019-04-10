@@ -1,20 +1,43 @@
 var Sequelize = require("sequelize");
 var sequelize = require("../config/connection.js");
 
-var Pixel = sequelize.define("pixel", {
-    routeName:
-    user_id: Sequelize.STRING,
-    date: Sequelize.STRING,
-    mood_id: Sequelize.STRING,
-    caffeine: Sequelize.INTEGER,
-    alcohol: Sequelize.INTEGER,
-    exercise: Sequelize.INTEGER,
-    screen: Sequelize.INTEGER,
-    sleep: Sequelize.INTEGER,
-}, {
-    FreezeTableName: true
-});
+module.exports = function(sequelize, DataTypes) {
+    var Pixel = sequelize.define(
+        "pixel",
+        {
+            routeName: DataTypes.STRING,
+            userId: DataTypes.STRING,
+            date: DataTypes.STRING,
+            moodId: DataTypes.STRING,
+            caffeine: DataTypes.INTEGER,
+            alcohol: DataTypes.INTEGER,
+            exercise: DataTypes.INTEGER,
+            screen: DataTypes.INTEGER,
+            sleep: DataTypes.INTEGER
+        }, {
+            FreezeTableName: true
+        });
+    return Pixel;
+};
 
-User.sync();
+// var Pixel = sequelize.define(
+//     "pixel",
+//     {
+//         routeName: Sequelize.STRING,
+//         userId: Sequelize.STRING,
+//         date: Sequelize.STRING,
+//         moodId: Sequelize.STRING,
+//         caffeine: Sequelize.INTEGER,
+//         alcohol: Sequelize.INTEGER,
+//         exercise: Sequelize.INTEGER,
+//         screen: Sequelize.INTEGER,
+//         sleep: Sequelize.INTEGER
+//     },
+//     {
+//         FreezeTableName: true
+//     }
+// );
 
-module.exports = User;
+// Pixel.sync();
+
+// module.exports = Pixel;
