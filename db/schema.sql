@@ -1,6 +1,20 @@
 DROP DATABASE IF EXISTS pixelsdb;
 CREATE DATABASE pixelsdb;
 
+-- ==============
+-- =INSTRUCTIONS=
+-- ==============
+-- In command line type 
+-- "mysql -u root"
+-- This gets you in the mysql command line interface
+-- type
+-- "source db/schema.sql"
+-- to execute the file and create the database
+-- type
+-- "exit"
+-- to get out of the mysql interface
+
+
 -- USE pixelsdb;
 
 -- CREATE TABLE 'users' (
@@ -13,7 +27,7 @@ CREATE DATABASE pixelsdb;
 
 -- CREATE TABLE 'pixels' (
 --     'id' INT(11) AUTO_INCREMENT NOT NULL,
---     'user_id' INT references users(id),
+--     'user_id' INT references users(id),  **This is a foreign key which we probably won't need due to Sequelize
 --     'date' DATETIME NOT NULL,
 --     'mood_id' INT references mood(id),
 --     'caffeine' INT,

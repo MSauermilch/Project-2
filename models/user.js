@@ -1,5 +1,5 @@
-var Sequelize = require("sequelize");
-var sequelize = require("../config/connection.js");
+// var Sequelize = require("sequelize");
+// var sequelize = require("../config/connection.js");
 
 
 module.exports = function(sequelize, DataTypes) {
@@ -13,6 +13,16 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         FreezeTableName: true
     });
+
+    User.associate = function(models) {
+        // Associating Author with Posts
+        // When an Author is deleted, also delete any associated Posts
+        this.hasMany(models.pixel, {
+            onDelete: "cascade"
+        });
+    };
+
+    User.sync();
     return User;
 };
 // var User = sequelize.define(

@@ -1,7 +1,7 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
+// Get all examples
   app.get("/api/tracker", function(req, res) {
     db.Track.findAll({}).then(function(dbTrack) {
       res.json(dbTrack);
