@@ -7,8 +7,10 @@ module.exports = function(sequelize, DataTypes) {
         "user", 
         {
         routeName: DataTypes.STRING,
-        name: DataTypes.STRING,
+        firstName: DataTypes.STRING,
+        lastName: DataTypes.STRING,
         userName: DataTypes.STRING,
+        email: DataTypes.STRING,
         password: DataTypes.STRING
     }, {
         FreezeTableName: true

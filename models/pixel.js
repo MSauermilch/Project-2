@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     {
       routeName: DataTypes.STRING,
       date: DataTypes.STRING,
-      moodId: DataTypes.STRING,
+      mood: DataTypes.STRING,
       caffeine: DataTypes.INTEGER,
       alcohol: DataTypes.INTEGER,
       exercise: DataTypes.INTEGER,
