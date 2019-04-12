@@ -1,32 +1,51 @@
+  
 var db = require("../models");
 
 module.exports = function(app) {
-// Get all examples
-  app.get("/api/tracker", function(req, res) {
-    db.Track.findAll({}).then(function(dbTrack) {
-      res.json(dbTrack);
+  // This route gets a list of all users
+  app.get("/api/users", function(req, res) {
+    db.User.findAll({}).then(function(allUsers) {
+      res.json(allUsers);
     });
   });
 
-  // Create a new example
-  app.post("/api/tracker", function(req, res) {
-    db.Track.create(req.body).then(function(dbTrack) {
-      res.json(dbTrack);
+  // This route adds a user to the database
+  app.post("/api/users", function(req, res) {
+    // the user consists of a name, a username and a password
+    // the object that is passed should be
+    // { name: aName,
+    //   userName: aUserName,
+    //   password: aPassword
+    // }
+    var user = req.body;
+    db.User.create(user);
+  });
+
+  // This route gets a list of all pixels
+  app.get("/api/pixels", function(req, res) {
+    db.Pixel.findAll({}).then(function(allPixels) {
+      res.json(allPixels);
     });
   });
 
-  app.put("/api/tracker", function(req, res) {
-    db.Track.update(req.body).then(function(dbTrack) {
-      res.json(dbTrack);
-    }).catch(function(err) {
-      res.json(err);
-    });
+  // This route saves a pixel to the database
+  app.post("/api/pixels", function(req, res) {
+    // each pixel consists of a date, moodId, caffeine, alcohol, exercise, screen, and sleep
+    // the object that is passed should be
+    // {
+    //   moodId: aMood,
+    //   caffeine: aCaffeine,
+    //   alcohol: aAlcohol,
+    //   exercise: aExercise,
+    //   screen: aScreen,
+    //   sleep: aSleep
+    // }
+    var pixel = req.body;
+    db.Pixel.create(pixel);
   });
 
-  // Delete an example by id
-  //app.delete("/api/examples/:id", function(req, res) {
-    //db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      //res.json(dbExample);
-    //});
-  //});
+  // Deletes a pixel based on id
+  app.delete("/api/pixels", function(req, res) {
+    db.Pixel.destroy({ where: { id: req.params.id } })
+  });
 };

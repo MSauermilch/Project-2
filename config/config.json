@@ -1,15 +1,10 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-    "password": "PizzaPizza69",
-=======
     "password": null,
->>>>>>> f1d825e7ac0e5da801d7dd3392710068bd7879a3
     "database": "pixelsdb",
     "host": "localhost",
     "dialect": "mysql"
-
   },
   "test": {
     "username": "root",
