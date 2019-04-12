@@ -1,181 +1,236 @@
 <div id="home">
   <div class="container">
 
-<div class="wrapper">
-        <!-- Sidebar Holder -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Tracking <br>Sidebar</h3>
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="/" aria-expanded="false" class="dropdown-toggle">Home</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/coffee" aria-expanded="false" class="dropdown-toggle">Coffee</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/drinks"  aria-expanded="false" class="dropdown-toggle">Drinks</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/exercise" aria-expanded="false" class="dropdown-toggle">Exercise</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/sleep" aria-expanded="false" class="dropdown-toggle">Sleep</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/screen" aria-expanded="false" class="dropdown-toggle">Screen</a>
-                </li>
-                <br>
-            </ul>
-            </div>
-        </nav>
+    <div class="wrapper">
+      <!-- Sidebar Holder -->
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          <h3>Tracking <br>Sidebar</h3>
+          <ul class="list-unstyled components">
+            <li class="active">
+              <a href="/" aria-expanded="false" class="dropdown-toggle">Home</a>
+            </li>
+            <br>
+            <li class="active">
+              <a href="/mood" aria-expanded="false" class="dropdown-toggle">Mood</a>
+            </li>
+            <br>
+            <li class="active">
+              <a href="/coffee" aria-expanded="false" class="dropdown-toggle">Coffee</a>
+            </li>
+            <br>
+            <li class="active">
+              <a href="/drinks" aria-expanded="false" class="dropdown-toggle">Drinks</a>
+            </li>
+            <br>
 
-        <!-- Page Content Holder -->
-        <div id="content">
+            <!-- User Choice List -->
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
+            <li class="active" style="background-color: #7386D5;">
+              <a href="https://stackoverflow.com/questions/15050095/a-link-not-working-by-clicking-only-work-by-open-link-in-new-tab-command"
+                class="ul_current" id="newPage" onclick="return false"></a>
+            </li>
 
-                    <button type="button" id="sidebarCollapse" class="navbar-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+            <input type="text" id="input_listName" />
+            <br />
+            <button type="submit" class="btn_sendMessage" id="btn_createList">Create Your Own</button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            
-                                <a class="nav-link" href="#" id="login">Log In</a>
-          
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            
-            <h1>Hope</h1>
-            <h1>Your</h1>
-            <h1>Feeling</h1>
-            <h1>Happy!</h1>
+          </ul>
+        </div>
+      </nav>
 
-      </div>
-   </div>
-  </div>
-</div>  
+      <!-- Page Content Holder -->
+      <div id="content">
 
-<div class="fixed-action-btn">
-    <a class="btn-floating btn-large">
-      <i class="bigIcon fa fa-plus" data-toggle="modal" data-target="#myModal">Track Items</i>
-    </a>
-    
-  </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
 
-  <!-- Modal Trigger -->
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
 
-  <div class="modal fade" id="myModal" role="dialog" tabindex="-1">
-      <div class="modal-dialog">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav navbar-nav ml-auto">
 
-          <!-- Modal content-->
-          <div class="modal-content">
-            <button type="button" class="btn btn-default cross-close" data-dismiss="modal" id="closeModal">X</button>
-              
-            <div class="modal-header">
-              <button type="button" id="closemodal" class="close" data-dismiss="modal"></button>
-              <h2 class="col-12 modal-title">Enter Your Info For Today</h2>
-            </div>
-            <div class="modal-body">
-              <form action="/action_page.php">
+                <a class="nav-link" href="#" id="login">Log In</a>
 
-                <p id="mood">Mood
-                  <input class="butt1" type="button" />
-                  <input class="butt2" type="button" />
-                  <input class="butt3" type="button" />
-                  <input class="butt4" type="button" />
-                  <input class="butt5" type="button" />
-                </p>
-
-                <div>
-                  <p style="width: 40%; float: left; ">Caffeine</p>
-                  <input type="text" style="width: 15%; text-align:center; margin-right: 15px; position:relative" />
-                  <p style="width: 40%; float: right; ">cups</p>
-                </div>
-                <br>
-                <div style="margin-top: -30px;">
-                  <p style="width: 40%; float: left; ">Drinks</p>
-                  <input type="text" style="width: 15%; text-align:center; margin-right: 15px; position:relative" />
-                  <p style="width: 40%; float: right; ">glass</p>
-                </div>
-                <br>
-                <div style="margin-top: -30px;">
-                  <p style="width: 40%; float: left; ">Sleep</p>
-                  <input type="text" style="width: 15%; text-align:center; margin-right: 15px; position:relative" />
-                  <p style="width: 40%; float: right; ">hours</p>
-                </div>
-                
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" id="">Submit</button>
+              </ul>
             </div>
           </div>
+        </nav>
 
+        <h2>Charts</h2>
       </div>
+    </div>
   </div>
+</div>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large">
+    <i class="bigIcon fa fa-plus" data-toggle="modal" data-target="#myModal">Track Items</i>
+  </a>
+
+</div>
+
+<!-- Modal Trigger -->
+
+<div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <button type="button" class="btn btn-default cross-close" data-dismiss="modal" id="closeModal">X</button>
+
+      <div class="modal-header">
+        <button type="button" id="closemodal" class="close" data-dismiss="modal"></button>
+        <h2 class="col-12 modal-title">Enter Your Info For Today</h2>
+      </div>
+      <div class="modal-body">
+        <form action="/action_page.php">
+          <p id="mood">Mood
+            <input type="button" data-mood="1" class="butt1" />
+            <input type="button" data-mood="2" class="butt2" />
+            <input type="button" data-mood="3" class="butt3" />
+            <input type="button" data-mood="4" class="butt4" />
+            <input type="button" data-mood="5" class="butt5 butt-active" />
+          </p>
+          <div>
+            <span>Caffeine</span>
+            <input type="text" id="caffeine" />
+            <span>cups</span>
+          </div>
+          <br>
+          <div>
+            <span>Drinks</span>
+            <input type="text" id="drinks" />
+            <span>glass</span>
+          </div>
+          <br>
+          <div>
+            <span>Sleep</span>
+            <input type="text" id="sleep" />
+            <span>hours</span>
+          </div>
+          <br>
+          <div>
+            <span>Exercise</span>
+            <input type="text" id="calories" />
+            <span>calories burned</span>
+          </div>
+          <br>
+          <div>
+            <span>Screen Time</span>
+            <input type="text" id="screentime" />
+            <span>hours</span>
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="submitModal">Submit</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <label for="caffeine" id="caffeine">Caffeine</label>
-                  <input type="text" id="caffeineInput" placeholder="Cups" />
+<input type="text" id="caffeineInput" placeholder="Cups" />
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
 
 <script>
 
-    $(document).ready(function () {
+  $(document).ready(function () {
 
-      window.onclick = function(event) {
-        if (event.target=="myModal")
-        {
-          $('#myModal').hide();
-          $('.modal-backdrop').hide();
-        }
+    $("#myModal").modal();
 
+    $(document).delegate(".modal-backdrop", 'click', function () {
+      $('#closeModal').click();
+    })
+
+    $("#submitModal").click(function () {
+
+      var mood = $(".butt-active").attr('data-mood');
+      var caffeine = $("#caffeine").val();
+      var drinks = $("#drinks").val();
+      var sleep = $("#sleep").val();
+      var calories = $("#calories").val();
+      var screentime = $("#screentime").val();
+      var routenamevalue = 'test';
+      var userid = 2;
+      var datevalue = '2002';
+      var data = {
+        moodId: mood,
+        caffeine,
+        drinks,
+        sleep,
+        calories,
+        screentime,
+        routenamevalue,
+        userid,
+        dateValue: datevalue
       }
-
-      $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-        $(this).toggleClass('active');
+      //var querystring = "INSERT INTO PIXELS(routeName, userId, date, moodId, caffeine, alcohol, exercise, screen, sleep) VALUES(test,2," + datevalue + "," + mood + "," + caffeine + "," + drinks + "," + calories + "," + screentime + "," + sleep + ");";
+      //alert(querystring);
+      $.ajax({
+        url: '/api/tracker/',
+        method: "post",
+        data,
+        success: function () {
+          console.log('success');
+        },
+        error: function () {
+          console.log("error")
+        }
       });
+
     });
 
-  
+    $(document).delegate("#mood input", 'click', function () {
+      $(".butt-active").removeClass('butt-active');
+      $(this).addClass('butt-active');
+    })
 
-    document.addEventListener('DOMContentLoaded', function () {
+
+    window.onclick = function (event) {
+      if (event.target == "myModal") {
+        $('#myModal').hide();
+        $('.modal-backdrop').hide();
+      }
+
+    }
+
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+      $(this).toggleClass('active');
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.fixed-action-btn');
     var instances = M.FloatingActionButton.init(elems, {
       direction: 'top'
     });
 
-    });
+  });
 
-    $('#btn_createList').click(function(event){
-    
+  $('#btn_createList').click(function (event) {
+
     $('.ul_current').append($('<li>', {
-        text: $('#input_listName').val()
+      text: $('#input_listName').val()
     }));
 
     var url = "http://localhost:3000";
     var newPageURL = url + "";
 
-  $("#newPage").click(function(event) {
-    var myWindow = window.open("", "newPage");
-    myWindow.document.write("<p>This is newPage.</p>");
+    $("#newPage").click(function (event) {
+      var myWindow = window.open("", "newPage");
+      myWindow.document.write("<p>This is newPage.</p>");
+    });
   });
 
-});
-  
 </script>
-

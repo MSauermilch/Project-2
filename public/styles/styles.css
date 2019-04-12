@@ -291,44 +291,42 @@ form {
 }
 
 .butt1 {
-    background-color:#3f51b5;
-    height: 31px;
-    width: 31px;
-    cursor: pointer;
-    margin-left: 78px;
+    background-color:#3f51b5 !important;
+    margin-left: 78px !important;
+}
+
+.butt1, .butt2, .butt3, .butt4, .butt5 {
+    height: 31px !important;
+    width: 31px !important;
+    cursor: pointer !important;
+    border: none !important;
+    outline: none !important;
+    border: 2px solid transparent !important;
 }
 
 .butt2 {
-    background-color:#f44336;
-    height: 31px;
-    width: 31px;
-    cursor: pointer;
+    background-color:#f44336 !important;
 }
 
 .butt3 {
-    background-color:#ff9800;
-    height: 31px;
-    width: 31px;
-    cursor: pointer;
+    background-color:#ff9800 !important;
 }
 
 .butt4 {
-    background-color:#ffeb3b;
-    height: 31px;
-    width: 31px;
-    cursor: pointer;
+    background-color:#ffeb3b !important;
 }
 
 .butt5 {
-    background-color:#8bc34a;
-    height: 31px;
-    width: 31px;
-    cursor: pointer;
+    background-color:#8bc34a !important;
 }
 
 .butt1:hover {
     background-color:gray;
     color:white;
+}
+
+input.butt-active {
+    border: 2px solid #000 !important;
 }
 
 .butt2:hover {
@@ -353,4 +351,17 @@ form {
 
 textarea {
     width: 50px;
+}
+
+.modal-body form > div {
+    display: flex;
+    font-size: 20px;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.modal-body form input[type="text"] {
+    width: 50% !important;
+    text-align: center;
+    font-size: 30px !important;
 }
