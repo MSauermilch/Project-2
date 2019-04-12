@@ -1,4 +1,4 @@
-var connection = require("../config/config.js")
+var connection = require("../config/config.js");
 
 $(document).ready(function() {
 
@@ -39,7 +39,7 @@ $(document).ready(function() {
     console.log(queryString);
   }
 
-}
+});
 
 
 
