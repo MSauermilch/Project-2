@@ -71,42 +71,71 @@
 </div>  
 
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
-      <i class="bigIcon">Track Items</i>
+    <a class="btn-floating btn-large">
+      <i class="bigIcon fa fa-plus" data-toggle="modal" data-target="#myModal">Track Items</i>
     </a>
-
-    <!-- Modal Trigger -->
-   
-    <ul>
-      <li><a class="btn-floating red"><i class="mood"  data-toggle="modal" data-target="#myModal">Mood</i></a></li>
-      <li><a class="btn-floating white"><i class="coffee" data-toggle="modal" data-target="#myModal">Coffee</i></a></li>
-      <li><a class="btn-floating green"><i class="drinks" data-toggle="modal" data-target="#myModal">Drinks</i></a></li>
-      <li><a class="btn-floating blue"><i class="sleep" data-toggle="modal" data-target="#myModal">&times;</i></a></li>
-    </ul>
     
   </div>
+
+  <!-- Modal Trigger -->
 
   <div class="modal fade" id="myModal" role="dialog" tabindex="-1">
       <div class="modal-dialog">
 
           <!-- Modal content-->
           <div class="modal-content">
+            <button type="button" class="btn btn-default cross-close" data-dismiss="modal" id="closeModal">X</button>
+              
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"></button>
-              <h4 class="modal-title">Modal Header</h4>
+              <button type="button" id="closemodal" class="close" data-dismiss="modal"></button>
+              <h2 class="col-12 modal-title">Enter Your Info For Today</h2>
             </div>
             <div class="modal-body">
-              <input type='text' value="items">Track Items
+              <form action="/action_page.php">
+
+                    
+
+
+
+                <p id="mood">Mood
+                  <input class="butt1" type="button" />
+                  <input class="butt2" type="button" />
+                  <input class="butt3" type="button" />
+                  <input class="butt4" type="button" />
+                  <input class="butt5" type="button" />
+                </p>
+
+                <div>
+                  <p style="width: 40%; float: left; ">Caffeine</p>
+                  <input type="text" style="width: 15%; text-align:center; margin-right: 15px; position:relative" />
+                  <p style="width: 40%; float: right; ">cups</p>
+                </div>
+                <br>
+                <div style="margin-top: -30px;">
+                  <p style="width: 40%; float: left; ">Drinks</p>
+                  <input type="text" style="width: 15%; text-align:center; margin-right: 15px; position:relative" />
+                  <p style="width: 40%; float: right; ">glass</p>
+                </div>
+                <br>
+                <div style="margin-top: -30px;">
+                  <p style="width: 40%; float: left; ">Sleep</p>
+                  <input type="text" style="width: 15%; text-align:center; margin-right: 15px; position:relative" />
+                  <p style="width: 40%; float: right; ">hours</p>
+                </div>
+                
+                
+              </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">Close</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="">Submit</button>
             </div>
           </div>
 
       </div>
   </div>
 
-
+<label for="caffeine" id="caffeine">Caffeine</label>
+                  <input type="text" id="caffeineInput" placeholder="Cups" />
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
@@ -114,6 +143,15 @@
 <script>
 
     $(document).ready(function () {
+
+      window.onclick = function(event) {
+        if (event.target=="myModal")
+        {
+          $('#myModal').hide();
+          $('.modal-backdrop').hide();
+        }
+
+      }
 
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
@@ -144,6 +182,9 @@
     var myWindow = window.open("", "newPage");
     myWindow.document.write("<p>This is newPage.</p>");
   });
+
+  
+
 
 });
   
