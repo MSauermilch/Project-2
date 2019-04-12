@@ -2,11 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-<<<<<<< HEAD
     "database": "pixelsdb",
-=======
-    "database": "exampledb",
->>>>>>> 8d52d53804c9415ce4030fc41af68ac2c020855e
     "host": "localhost",
     "dialect": "mysql"
   },

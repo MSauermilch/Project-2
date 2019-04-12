@@ -4,7 +4,8 @@ var db = require("../models");
 module.exports = function(app) {
   // This route gets a list of all users
   app.get("/api/users", function(req, res) {
-    db.User.findAll({}).then(function(allUsers) {
+    db.user.findAll({}).then(function(allUsers) {
+      console.log(allUsers);
       res.json(allUsers);
     });
   });
@@ -18,12 +19,13 @@ module.exports = function(app) {
     //   password: aPassword
     // }
     var user = req.body;
-    db.User.create(user);
+    db.user.create(user);
+    console.log(`Added a new user named ${user.name}`);
   });
 
   // This route gets a list of all pixels
   app.get("/api/pixels", function(req, res) {
-    db.Pixel.findAll({}).then(function(allPixels) {
+    db.pixel.findAll({}).then(function(allPixels) {
       res.json(allPixels);
     });
   });
@@ -41,11 +43,11 @@ module.exports = function(app) {
     //   sleep: aSleep
     // }
     var pixel = req.body;
-    db.Pixel.create(pixel);
+    db.pixel.create(pixel);
   });
 
   // Deletes a pixel based on id
   app.delete("/api/pixels", function(req, res) {
-    db.Pixel.destroy({ where: { id: req.params.id } })
+    db.pixel.destroy({ where: { id: req.params.id } })
   });
 };
