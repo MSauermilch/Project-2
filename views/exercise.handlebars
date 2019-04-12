@@ -1,18 +1,14 @@
 <div class="container">
   <div class="wrapper">
         <!-- Sidebar Holder -->
-        <nav id="sidebar">
+       <nav id="sidebar">
             <div class="sidebar-header">
                 <h3>Tracking <br>Sidebar</h3>
             <ul class="list-unstyled components">
                 <li class="active">
                     <a href="/" aria-expanded="false" class="dropdown-toggle">Home</a>
                 </li>
-                <br>
-                <li class="active">
-                    <a href="/mood" aria-expanded="false" class="dropdown-toggle">Mood</a>
-                </li>
-                <br>
+                <br>              
                 <li class="active">
                     <a href="/coffee" aria-expanded="false" class="dropdown-toggle">Coffee</a>
                 </li>
@@ -20,6 +16,19 @@
                 <li class="active">
                     <a href="/drinks"  aria-expanded="false" class="dropdown-toggle">Drinks</a>
                 </li>
+                <br>
+                <li class="active">
+                    <a href="/exercise" aria-expanded="false" class="dropdown-toggle">Exercise</a>
+                </li>
+                <br>
+                <li class="active">
+                    <a href="/sleep" aria-expanded="false" class="dropdown-toggle">Sleep</a>
+                </li>
+                <br>
+                <li class="active">
+                    <a href="/screen" aria-expanded="false" class="dropdown-toggle">Screen</a>
+                </li>
+                <br>
             </ul>
             </div>
         </nav>
@@ -46,35 +55,15 @@
                 </div>
             </nav>
             
-            <h2>Mood Chart</h2>
-
+   {{!-- Sidebar --}}
   <script>
-
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
         $(this).toggleClass('active');
       });
     });
-
   </script>
-
-
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
-      <i class="bigIcon">Track Items</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red"><i class="mood">Mood</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="coffee">Coffee</i></a></li>
-      <li><a class="btn-floating green"><i class="drinks">Drinks</i></a></li>
-      <li><a class="btn-floating blue"><i class="sleep">Sleep</i></a></li>
-    </ul>
-  </div>
-
-  
-
-    
 
       </div>
     </div>
@@ -82,7 +71,7 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="../public/js/index.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -92,4 +81,5 @@
     });
   });
 </script>
+
 </div>

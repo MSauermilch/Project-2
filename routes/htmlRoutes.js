@@ -11,15 +11,6 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/mood", function(req, res) {
-    db.Track.findAll({}).then(function(dbTrack) {
-      res.render("mood", {
-        msg: "Welcome!",
-        examples: dbTrack
-      });
-    });
-  });
-
   app.get("/coffee", function(req, res) {
     db.Track.findAll({}).then(function(dbTrack) {
       res.render("coffee", {
@@ -32,6 +23,33 @@ module.exports = function(app) {
   app.get("/drinks", function(req, res) {
     db.Track.findAll({}).then(function(dbTrack) {
       res.render("drinks", {
+        msg: "Welcome!",
+        examples: dbTrack
+      });
+    });
+  });
+
+  app.get("/exercise", function(req, res) {
+    db.Track.findAll({}).then(function(dbTrack) {
+      res.render("exercise", {
+        msg: "Welcome!",
+        examples: dbTrack
+      });
+    });
+  });
+
+  app.get("/screen", function(req, res) {
+    db.Track.findAll({}).then(function(dbTrack) {
+      res.render("screen", {
+        msg: "Welcome!",
+        examples: dbTrack
+      });
+    });
+  });
+
+  app.get("/sleep", function(req, res) {
+    db.Track.findAll({}).then(function(dbTrack) {
+      res.render("sleep", {
         msg: "Welcome!",
         examples: dbTrack
       });
