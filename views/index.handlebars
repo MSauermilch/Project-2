@@ -12,32 +12,25 @@
                 </li>
                 <br>
                 <li class="active">
-                    <a href="/mood" aria-expanded="false" class="dropdown-toggle">Mood</a>
-                </li>
-                <br>
-                <li class="active">
                     <a href="/coffee" aria-expanded="false" class="dropdown-toggle">Coffee</a>
                 </li>
                 <br>
                 <li class="active">
-                    <a href="/drinks" aria-expanded="false" class="dropdown-toggle">Drinks</a>
+                    <a href="/drinks"  aria-expanded="false" class="dropdown-toggle">Drinks</a>
                 </li>
                 <br>
-
-                <!-- User Choice List -->
-
-                <li class="active" style="background-color: #7386D5;">
-                <a href="https://stackoverflow.com/questions/15050095/a-link-not-working-by-clicking-only-work-by-open-link-in-new-tab-command" class="ul_current" id="newPage" onclick="return false"></a>
+                <li class="active">
+                    <a href="/exercise" aria-expanded="false" class="dropdown-toggle">Exercise</a>
                 </li>
-
-                <input type="text" id="input_listName"/>
-                <br/>
-                <button type="submit" class="btn_sendMessage" id="btn_createList">Create Your Own</button>
-
-                
-
-
-
+                <br>
+                <li class="active">
+                    <a href="/sleep" aria-expanded="false" class="dropdown-toggle">Sleep</a>
+                </li>
+                <br>
+                <li class="active">
+                    <a href="/screen" aria-expanded="false" class="dropdown-toggle">Screen</a>
+                </li>
+                <br>
             </ul>
             </div>
         </nav>
@@ -64,7 +57,11 @@
                 </div>
             </nav>
             
-            <h2>Charts</h2>
+            <h1>Hope</h1>
+            <h1>Your</h1>
+            <h1>Feeling</h1>
+            <h1>Happy!</h1>
+
       </div>
    </div>
   </div>
@@ -93,10 +90,6 @@
             <div class="modal-body">
               <form action="/action_page.php">
 
-                    
-
-
-
                 <p id="mood">Mood
                   <input class="butt1" type="button" />
                   <input class="butt2" type="button" />
@@ -122,7 +115,6 @@
                   <input type="text" style="width: 15%; text-align:center; margin-right: 15px; position:relative" />
                   <p style="width: 40%; float: right; ">hours</p>
                 </div>
-                
                 
               </form>
             </div>
@@ -182,9 +174,6 @@
     var myWindow = window.open("", "newPage");
     myWindow.document.write("<p>This is newPage.</p>");
   });
-
-  
-
 
 });
   
