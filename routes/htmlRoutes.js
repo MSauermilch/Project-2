@@ -3,37 +3,46 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Track.findAll({}).then(function(dbTrack) {
+    db.pixel.findAll({}).then(function(dbpixels) {
       res.render("index", {
         msg: "Welcome!",
-        examples: dbTrack
+        examples: dbpixels
       });
     });
   });
 
   app.get("/mood", function(req, res) {
-    db.Track.findAll({}).then(function(dbTrack) {
+    db.pixel.findAll({}).then(function(dbpixels) {
       res.render("mood", {
         msg: "Welcome!",
-        examples: dbTrack
+        examples: dbpixels
       });
     });
   });
 
   app.get("/coffee", function(req, res) {
-    db.Track.findAll({}).then(function(dbTrack) {
+    db.pixel.findAll({}).then(function(dbpixels) {
       res.render("coffee", {
         msg: "Welcome!",
-        examples: dbTrack
+        examples: dbpixels
       });
     });
   });
 
   app.get("/drinks", function(req, res) {
-    db.Track.findAll({}).then(function(dbTrack) {
+    db.pixel.findAll({}).then(function(dbpixels) {
       res.render("drinks", {
         msg: "Welcome!",
-        examples: dbTrack
+        examples: dbpixels
+      });
+    });
+  });
+
+  app.get("/sleep", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("sleep", {
+        msg: "Welcome!",
+        examples: dbpixels
       });
     });
   });

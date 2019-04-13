@@ -1,4 +1,3 @@
-  
 var db = require("../models");
 
 module.exports = function(app) {
@@ -14,7 +13,7 @@ module.exports = function(app) {
   app.post("/api/users", function(req, res) {
     // the user consists of a name, a username and a password
     // the object that is passed should be
-    // { name: aName,
+    // {
     //   firstName: aFirstName,
     //   lastName: aLastName,
     //   userName: aUserName,
@@ -23,7 +22,7 @@ module.exports = function(app) {
     // }
     var user = req.body;
     db.user.create(user);
-    console.log(`Added a new user named ${user.name}`);
+    console.log("Added a new user");
   });
 
   // This route gets a list of all pixels
@@ -33,24 +32,37 @@ module.exports = function(app) {
     });
   });
 
-  // This route saves a pixel to the database
-  app.post("/api/pixels", function(req, res) {
-    // each pixel consists of a date, moodId, caffeine, alcohol, exercise, screen, and sleep
-    // the object that is passed should be
-    // {
-    //   moodId: aMood,
-    //   caffeine: aCaffeine,
-    //   alcohol: aAlcohol,
-    //   exercise: aExercise,
-    //   screen: aScreen,
-    //   sleep: aSleep
-    // }
-    var pixel = req.body;
-    db.pixel.create(pixel);
+  // Get all examples
+  app.get("/api/tracker/", function(req, res) {
+    db.pixel.findAll({}).then(function(dbTrack) {
+      res.json(dbTrack);
+    });
   });
 
-  // Deletes a pixel based on id
-  app.delete("/api/pixels", function(req, res) {
-    db.pixel.destroy({ where: { id: req.params.id } })
+  // Create a new example
+  app.post("/api/tracker/", function(req, res) {
+    // console.log(req);
+    console.log(req.body);
+    db.pixel
+      .create(req.body)
+      .then(function(dbTrack) {
+        res.json(dbTrack);
+        // console.log(dbTrack);
+      })
+      .catch(function(err) {
+        res.json(err);
+        console.log(err);
+      });
+  });
+
+  app.put("/api/tracker", function(req, res) {
+    db.pixel
+      .update(req.body)
+      .then(function(dbTrack) {
+        res.json(dbTrack);
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
   });
 };

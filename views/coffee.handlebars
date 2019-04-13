@@ -10,16 +10,25 @@
                 </li>
                 <br>
                 <li class="active">
-                    <a href="/mood" aria-expanded="false" class="dropdown-toggle">Mood</a>
-                </li>
-                <br>
-                <li class="active">
                     <a href="/coffee" aria-expanded="false" class="dropdown-toggle">Coffee</a>
                 </li>
                 <br>
                 <li class="active">
                     <a href="/drinks"  aria-expanded="false" class="dropdown-toggle">Drinks</a>
                 </li>
+                <br>
+                <li class="active">
+                    <a href="/exercise" aria-expanded="false" class="dropdown-toggle">Exercise</a>
+                </li>
+                <br>
+                <li class="active">
+                    <a href="/sleep" aria-expanded="false" class="dropdown-toggle">Sleep</a>
+                </li>
+                <br>
+                <li class="active">
+                    <a href="/screen" aria-expanded="false" class="dropdown-toggle">Screen</a>
+                </li>
+                <br>
             </ul>
             </div>
         </nav>
@@ -30,7 +39,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
 
-                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">  {{!-- KEEP! --}}
                         <span></span>
                         <span></span>
                         <span></span>
@@ -46,43 +55,35 @@
                 </div>
             </nav>
             
-            <h2>Coffee Chart</h2>
+        <div><h3>Coffee Intake:</h3></div>
+        <div id="chart_div" style="width: 400px; height: 500px;"></div>
+          <br>
+        <div><h4><i>Maybe use handlebars to write a code block that adds "this weeks" and "last weeks" columns together. </i></h4></div>
+        <div><h4><i>This weeks intake: "This weeks calculated( X cups)"
+                                       "Caffine consumed ( X cups * 95mgs)"
+        </i></h4></div>
 
+        <div><h4><i>This weeks intake: "Last weeks calculated( X cups)"
+                                       "Caffine consumed ( X cups * 95mgs)"
+        </i></h4></div>
+
+        <p>How are we going to input data?</p>
+
+  {{!-- Sidebar --}}
   <script>
-
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
         $(this).toggleClass('active');
       });
     });
-
   </script>
 
-
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
-      <i class="bigIcon">Track Items</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red"><i class="mood">Mood</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="coffee">Coffee</i></a></li>
-      <li><a class="btn-floating green"><i class="drinks">Drinks</i></a></li>
-      <li><a class="btn-floating blue"><i class="sleep">Sleep</i></a></li>
-    </ul>
-  </div>
-
-  
-
-    
-
-      </div>
-    </div>
-  </div>
-</div>
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="../public/js/index.js"></script>
+
+<!--Script for google charts-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -91,5 +92,80 @@
       direction: 'top'
     });
   });
+
+  //Google Charts
+   google.charts.load('current', {'packages':['corechart', 'scatter']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+
+        var button = document.getElementById('change-chart');
+        var chartDiv = document.getElementById('chart_div');
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '');
+        data.addColumn('number', 'This week');
+        data.addColumn('number', 'Last week');
+
+        data.addRows([
+          ['Monday', 6, 7],
+          ['Tuesday', 3, 5],
+          ['Wednesday', 2, 3],
+          ['Thursday', 2, 2],
+          ['Friday', 4, 2],
+          ['Saturday', 2, 1],
+          ['Sunday', 1, 2]
+        ]);
+
+        var materialOptions = {
+          chart: {
+           // title: 'Coffee Intake',
+            // subtitle: 'based on hours studied'
+          },
+          width: 650,
+          height: 500,
+          series: {
+            0: {axis: 'hours studied'},
+            1: {axis: 'final grade'}
+          },
+          axes: {
+            y: {
+              'hours studied': {label: 'Cups'},
+              //'right title': {label: 'Final Exam Grade'}
+            }
+          }
+        };
+
+        var classicOptions = {
+          width: 650,
+          series: {
+            0: {targetAxisIndex: 0},
+            1: {targetAxisIndex: 1}
+          },
+          title: 'Students\' Final Grades - based on hours studied',
+
+          vAxes: {
+            // Adds titles to each axis.
+            0: {title: 'Hours Studied'},
+            1: {title: 'Final Exam Grade'}
+          }
+        };
+
+        function drawMaterialChart() {
+          var materialChart = new google.charts.Scatter(chartDiv);
+          materialChart.draw(data, google.charts.Scatter.convertOptions(materialOptions));
+          button.innerText = 'Change to Classic';
+          button.onclick = drawClassicChart;
+        }
+
+        function drawClassicChart() {
+          var classicChart = new google.visualization.ScatterChart(chartDiv);
+          classicChart.draw(data, classicOptions);
+          button.innerText = 'Change to Material';
+          button.onclick = drawMaterialChart;
+        }
+
+        drawMaterialChart();
+    };
 </script>
 </div>

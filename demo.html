@@ -4,20 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Pixels Demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-    <button id="click-button">Click</button>
-    <hr>
-    <div id="display"></div>
+    <div class="container">
+        <div class="card">
+            <button class="button" id="all-users">Get all users</button>
+            <button class="button" id="all-pixels">Get all pixels</button>
+        </div>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Add new user</div>
+                <form>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" id="first-name" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" id="user-name" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <button id="add-user" type="button" class="btn btn-primary">Submit</button>
+                    <button id="autofill-user" type="button" class="btn btn-primary">Autofill</button>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Add new pixel</div>
+                <form>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" id="first-name" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" id="user-name" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <button id="add-user" type="button" class="btn btn-primary">Submit</button>
+                    <button id="autofill-pixel" type="button" class="btn btn-primary">Autofill</button>
+                </form>
+            </div>
+        </div>
+        <div id="display"></div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    
     <script>
-        $("#click-button").click(function() {
-            // $("#display").text("Hello");
+        $("#all-users").click(function() {
             $.get("/api/users", function(data) {
-                $("#display").text(data);
+                console.log(data);
+                $("#display").text("");
+                if (data.length > 0) {
+                    for (x of data) {
+                        $("#display").append(   `<p>First Name: ${x.firstName}</p>
+                                                <p>Last Name: ${x.lastName}</p>
+                                                <p>Username: ${x.userName}</p>
+                                                <p>Email: ${x.email}</p>
+                                                <p>Password: ${x.password}</p><br>`);
+                    }
+                    // $("#display").text(data);
+                } else {
+                    $("#display").text("There are no users!");
+                }
             });
         });
+
+        $("#all-pixels").click(function() {
+            $.get("/api/pixels", function(data) {
+                console.log(data);
+                if (data.length > 0) {
+                    $("#display").text(data);
+                } else {
+                    $("#display").text("There are no pixels!");
+                }
+            });
+        });
+
+        $("#autofill-user").click(function() {
+            $("#first-name").val("Adam");
+            $("#last-name").val("Adamson");
+            $("#user-name").val("adamadamson");
+            $("#email").val("adam@adamson.com")
+            $("#password").val("madamimadam");
+        });
+
+        $("#add-user").click(function() {
+            var newUser = { 
+                firstName: $("#first-name").val().trim(),
+                lastName: $("#last-name").val().trim(),
+                userName: $("#user-name").val().trim(),
+                email: $("#email").val().trim(),
+                password: $("#password").val().trim()
+            }
+            console.log(newUser);
+            // $("display").text(newUser);
+            
+            $.post("/api/users", newUser)
+                .then(function(data) {
+                    $("#display").text("User added!");
+                })
+        });
+
+        
     </script>
 </body>
 </html>

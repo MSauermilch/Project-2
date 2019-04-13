@@ -1,14 +1,12 @@
 {
   "development": {
     "username": "root",
-    "password": null,
     "database": "pixelsdb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
