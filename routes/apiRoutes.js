@@ -50,6 +50,21 @@ module.exports = function(app) {
     console.log("added a new pixel");
   });
 
+  // Get all pixels associated with a use
+  app.post("/api/user/pixels", function(req, res) {
+    var theUserId = req.body.userId;
+    console.log(theUserId);
+    db.pixel
+      .findAll({
+        where: {
+          userId: theUserId
+        }
+      })
+      .then(function(usersPixels) {
+        res.json(usersPixels);
+      });
+  });
+
   // Get all examples
   app.get("/api/tracker/", function(req, res) {
     db.pixel.findAll({}).then(function(dbTrack) {

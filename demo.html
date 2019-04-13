@@ -83,6 +83,18 @@
                     <button id="autofill-pixel" type="button" class="btn btn-primary">Autofill</button>
                 </form>
             </div>
+            <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Get all pixels associated with user</div>
+                        <form>
+                            <div class="form-group">
+                                <label>User ID</label>
+                                <input type="number" class="form-control" id="select-user-id" placeholder="User ID">
+                            </div>
+                            
+                            <button id="get-user-pixels" type="button" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
         </div>
         <div id="display"></div>
     </div>
@@ -184,6 +196,25 @@
                 })
         });
 
+        $("#get-user-pixels").click(function() {
+            $("#display").text("");
+            var theUser = {
+                            userId: $("#select-user-id").val().trim()
+            };
+            $.post("/api/user/pixels", theUser)
+                .then(function(data) {
+                    if (data.length > 0) {
+                        for (x of data) {
+                            $("#display").append(`<p>Mood: ${x.mood}</p>`);
+                        }
+                    } else {
+                        $("#display").text("Pixels not found!");
+                    }
+                })
+            // console.log(theUser);
+            // $("#display").text(`You've selected ${theUser}`);
+
+        })
         
     </script>
 </body>

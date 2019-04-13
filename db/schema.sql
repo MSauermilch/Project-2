@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS pixelsdb;
-CREATE DATABASE pixelsdb;
+-- DROP DATABASE IF EXISTS pixelsdb;
+-- CREATE DATABASE pixelsdb;
 
 -- ==============
 -- =INSTRUCTIONS=

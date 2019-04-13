@@ -23,7 +23,9 @@ module.exports = function(sequelize, DataTypes) {
         });
     };
 
-    User.sync();
+    // User.sync({
+    //     force: true
+    // });
     return User;
 };
 // var User = sequelize.define(
