@@ -7,45 +7,40 @@
         <div class="sidebar-header">
           <h3>Tracking <br>Sidebar</h3>
           <ul class="list-unstyled components">
-           <li class="active">
-                    <a href="/" aria-expanded="false" class="dropdown-toggle">Mood</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/coffee" aria-expanded="false" class="dropdown-toggle">Coffee</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/drinks"  aria-expanded="false" class="dropdown-toggle">Drinks</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/exercise" aria-expanded="false" class="dropdown-toggle">Exercise</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/sleep" aria-expanded="false" class="dropdown-toggle">Sleep</a>
-                </li>
-                <br>
-                <li class="active">
-                    <a href="/screen" aria-expanded="false" class="dropdown-toggle">Screen</a>
-                </li>
-                <br>
-
-            <!-- User Choice List -->
-
-            <li class="active" style="background-color: #7386D5;">
-              <a href="https://stackoverflow.com/questions/15050095/a-link-not-working-by-clicking-only-work-by-open-link-in-new-tab-command"
-                class="ul_current" id="newPage" onclick="return false"></a>
+            <li class="active">
+              <a href="/" aria-expanded="false" class="dropdown-toggle">Home</a>
             </li>
-
-            <input type="text" id="input_listName" />
-            <br />
-            <button type="submit" class="btn_sendMessage" id="btn_createList">Create Your Own</button>
+            <br>
+            <li class="active">
+              <a href="/mood" aria-expanded="false" class="dropdown-toggle">Mood</a>
+            </li>
+            <br>
+            <li class="active">
+              <a href="/coffee" aria-expanded="false" class="dropdown-toggle">Coffee</a>
+            </li>
+            <br>
+            <li class="active">
+              <a href="/drinks" aria-expanded="false" class="dropdown-toggle">Drinks</a>
+            </li>
+            <br>
+            <li class="active">
+              <a href="/exercise" aria-expanded="false" class="dropdown-toggle">Exercise</a>
+            </li>
+            <br>
+            <li class="active">
+              <a href="/screen" aria-expanded="false" class="dropdown-toggle">Screen</a>
+            </li>
+            <br>
+            <li class="active">
+            <a href="/sleep" aria-expanded="false" class="dropdown-toggle">Sleep</a>
+            </li>
+            <br>
 
           </ul>
         </div>
       </nav>
+
+    
 
       <!-- Page Content Holder -->
       <div id="content">
@@ -88,7 +83,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <div class="modal-content" >
       <button type="button" class="btn btn-default cross-close" data-dismiss="modal" id="closeModal">X</button>
 
       <div class="modal-header">
@@ -98,36 +93,36 @@
       <div class="modal-body">
         <form action="/action_page.php">
           <p id="mood">Mood
-            <input type="button" data-mood="1" class="butt1" />
-            <input type="button" data-mood="2" class="butt2" />
-            <input type="button" data-mood="3" class="butt3" />
-            <input type="button" data-mood="4" class="butt4" />
-            <input type="button" data-mood="5" class="butt5 butt-active" />
+            <input type="button" id="a1" data-mood="1" class="butt1" />
+            <input type="button" id="a2" data-mood="2" class="butt2" />
+            <input type="button" id="a3" data-mood="3" class="butt3" />
+            <input type="button" id="a4" data-mood="4" class="butt4" />
+            <input type="button" id="a5" data-mood="5" class="butt5 butt-active" />
           </p>
           <div>
             <span>Caffeine</span>
             <input type="text" id="caffeine" />
             <span>cups</span>
           </div>
-          <br>
+        
           <div>
             <span>Drinks</span>
             <input type="text" id="drinks" />
             <span>glass</span>
           </div>
-          <br>
+          
           <div>
             <span>Sleep</span>
             <input type="text" id="sleep" />
             <span>hours</span>
           </div>
-          <br>
+          
           <div>
             <span>Exercise</span>
             <input type="text" id="calories" />
             <span>calories burned</span>
           </div>
-          <br>
+          
           <div>
             <span>Screen Time</span>
             <input type="text" id="screentime" />
@@ -161,27 +156,29 @@
     })
 
     $("#submitModal").click(function () {
-
+      
       var mood = $(".butt-active").attr('data-mood');
       var caffeine = $("#caffeine").val();
-      var drinks = $("#drinks").val();
+      var alcohol = $("#drinks").val();
       var sleep = $("#sleep").val();
-      var calories = $("#calories").val();
-      var screentime = $("#screentime").val();
-      var routenamevalue = 'test';
-      var userid = 2;
-      var datevalue = '2002';
+      var exercise = $("#calories").val();
+      var screen = $("#screentime").val();
+      var routeName = 'test';
+      var userId = 1;
+      var date = '2002';
       var data = {
         moodId: mood,
         caffeine,
-        drinks,
+        alcohol,
         sleep,
-        calories,
-        screentime,
-        routenamevalue,
-        userid,
-        dateValue: datevalue
+        exercise,
+        screen,
+        routeName,
+        date: date
       }
+
+      
+
       //var querystring = "INSERT INTO PIXELS(routeName, userId, date, moodId, caffeine, alcohol, exercise, screen, sleep) VALUES(test,2," + datevalue + "," + mood + "," + caffeine + "," + drinks + "," + calories + "," + screentime + "," + sleep + ");";
       //alert(querystring);
       $.ajax({
@@ -195,6 +192,13 @@
           console.log("error")
         }
       });
+
+
+      $("#caffeine").val('');
+      $("#drinks").val('');
+      $("#sleep").val('');
+      $("#calories").val('');
+      $("#screentime").val('');
 
     });
 
