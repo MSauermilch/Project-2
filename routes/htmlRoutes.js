@@ -11,14 +11,14 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/mood", function(req, res) {
-  //   db.pixel.findAll({}).then(function(dbpixels) {
-  //     res.render("mood", {
-  //       msg: "Welcome!",
-  //       examples: dbpixels
-  //     });
-  //   });
-  // });
+  app.get("/mood", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("mood", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
+  });
 
   app.get("/coffee", function(req, res) {
     db.pixel.findAll({}).then(function(dbpixels) {
@@ -38,38 +38,6 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/sleep", function(req, res) {
-    db.pixel.findAll({}).then(function(dbpixels) {
-      res.render("sleep", {
-        msg: "Welcome!",
-        examples: dbpixels
-      });
-    });
-  });
-
-  app.get("/demo", function(req, res) {
-    res.sendFile("demo.html", { root: "./" });
-  });
-
-  app.get("/screen", function(req, res) {
-    db.pixel.findAll({}).then(function(dbpixels) {
-      res.render("screen", {
-        msg: "Welcome!",
-        examples: dbpixels
-      });
-    });
-  });
-
-  // login
-  app.get("/login", function(req, res) {
-    db.pixel.findAll({}).then(function(dbpixels) {
-      res.render("signIn", {
-        msg: "Welcome!",
-        examples: dbpixels
-      });
-    });
-  });
-
   app.get("/exercise", function(req, res) {
     db.pixel.findAll({}).then(function(dbpixels) {
       res.render("exercise", {
@@ -79,10 +47,18 @@ module.exports = function(app) {
     });
   });
 
-  // sign up
-  app.get("/signup", function(req, res) {
+  app.get("/sleep", function(req, res) {
     db.pixel.findAll({}).then(function(dbpixels) {
-      res.render("signUp", {
+      res.render("sleep", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
+  });
+
+  app.get("/screen", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("screen", {
         msg: "Welcome!",
         examples: dbpixels
       });
