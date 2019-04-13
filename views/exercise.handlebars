@@ -1,16 +1,20 @@
-<div id="home">
-  <div class="container">
+<div id="exercise">
+<div class="container">
 
-<div class="wrapper">
-        {{!-- Sidebar Holder --}}
+  <div class="wrapper">
+        <!-- Sidebar Holder -->
        <nav id="sidebar">
             <div class="sidebar-header">
                 <h3>Tracking <br>Sidebar</h3>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="/" aria-expanded="false" class="dropdown-toggle">Mood</a>
+                    <a href="/" aria-expanded="false" class="dropdown-toggle">Home</a>
                 </li>
                 <br>
+                <li class="active">
+                <a href="/mood" aria-expanded="false" class="dropdown-toggle">Mood</a>
+                </li>
+                <br>              
                 <li class="active">
                     <a href="/coffee" aria-expanded="false" class="dropdown-toggle">Coffee</a>
                 </li>
@@ -35,31 +39,33 @@
             </div>
         </nav>
 
-        {{!-- Page Content Holder --}}
+        <!-- Page Content Holder -->
         <div id="content">
 
-        {{!-- NavBar --}}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
+
                     <button type="button" id="sidebarCollapse" class="navbar-btn">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
-                </div>
-            
-          {{!--Google Chart and body context --}}
-          <br>
-            <center><div><h3>Workout Report:</h3></div></center>
-              <br>
-            <center><div id="curve_chart" style="width: 800px; height: 500px"></div></center>
-              <br>
-            <div><center><h4><i>Your workout stats: "data"</i></h4></center></div>
-     </div>
-    </div>
-  </div>
-</div>
 
-  {{!-- Sidebar JS script--}}
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            
+                                <a class="nav-link" href="#" id="login">Log In</a>
+          
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        <!--Google Chart and body context-->
+        <div><h4><i>Calories Burned</i></h4></div>
+        <div id="curve_chart" style="width: 900px; height: 700px;"></div>
+         
+   {{!-- Sidebar --}}
   <script>
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
@@ -69,38 +75,86 @@
     });
   </script>
 
-{{!--Google Charts Scirpt--}}
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-{{!-- Jquery --}}
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{{!-- Index JS --}}
-  <script src="../public/js/index.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.fixed-action-btn');
-      var instances = M.FloatingActionButton.init(elems, {
-        direction: 'top'
-      });
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../public/js/index.js"></script>
+
+<!--Script for google charts-->
+
+
+<script>
+
+  var exercisedata;
+          var output = $.get("/api/tracker/", function (data) {
+                  exercisedata=data;
+              });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, {
+      direction: 'top'
     });
-  </script>
+  });
 
-  {{!-- Google Chart --}}
-  <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
   
         function drawChart() {
-          var data = google.visualization.arrayToDataTable([
-            ['Days'     , 'This Week',      'Last Week'],
-            ['Monday'   ,  1,                      1],
-            ['Tuesday'  ,  2,                      2],
-            ['Wedneday' ,  7,                      4],
-            ['Thursday' ,  5,                      5],
-            ['Friday'   ,  6,                      6],
-            ['Saturday' ,  10,                     8],
-            ['Sunday'   ,  5,                      1]
-          ]);
+        
+        var button = document.getElementById('change-chart');
+        var chartDiv = document.getElementById('curve_chart');
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Date');
+        data.addColumn('number', 'Values');
+        //data.addColumn('number', 'Last week');
+        var exercise_arr;
+        var exercise_length;
+        var date_extract;
+        exercise_length = Object.keys(exercisedata).length;
+        for (i=0;i<exercise_length;i++)
+        {
+            date_extract= exercisedata[i].createdAt.toString();
+            date_extract = date_extract.substring(0,10);
+            if(String(exercise_arr)!= "undefined")
+            {
+              //exercise_arr = exercise_arr + "['" + date_extract + "'," + exercisedata[i].exercise + "],";
+              exercise_arr = exercise_arr  + date_extract + "," + exercisedata[i].exercise + ",";
+            }
+            if(String(exercise_arr) == "undefined")
+            {
+              //exercise_arr = "['" + date_extract + "'," + exercisedata[i].exercise + "],";
+              exercise_arr = date_extract + "," + exercisedata[i].exercise + ",";
+            }
+        }
+        exercise_arr = exercise_arr.substring(0, exercise_arr.length -1);
+        var newarray = exercise_arr.split(',');
+
+        var newdata = new Array;
+        for (j=0;j<newarray.length;j++)
+        {
+           tempString = "'" + newarray[j] + "'";
+           newdata[j] = tempString;
+           j=j+1;
+           newdata[j] = newarray[j];
+           //console.log(tempString);
+        }
+        var temp1,temp2;
+        for (j=0;j<newdata.length;j++)
+        {
+            temp1 = newdata[j].toString();
+            j=j+1;
+            temp2 = parseInt(newdata[j]);
+            data.addRow([
+              temp1,temp2
+            ]);
+
+        }
   
           var options = {
             title: 'Workout Report',

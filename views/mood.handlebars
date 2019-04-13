@@ -1,9 +1,7 @@
-<div id="home">
-  <div class="container">
-
-<div class="wrapper">
+<div class="container">
+  <div class="wrapper">
         <!-- Sidebar Holder -->
-       <nav id="sidebar">
+        <nav id="sidebar">
             <div class="sidebar-header">
                 <h3>Tracking <br>Sidebar</h3>
             <ul class="list-unstyled components">
@@ -60,12 +58,9 @@
                     </div>
                 </div>
             </nav>
-            
-            <!--Google Chart and body context-->
-            <div><h3>Drinks Dranken:</h3></div>
-            <div id="curve_chart" style="width: 900px; height: 500px"></div>
-            
-
+          <div><h3>Mood:</h3></div>
+        <div id="chart_div" style="width: 900px; height: 700px;"></div>          
+       
   {{!-- Sidebar --}}
   <script>
     $(document).ready(function () {
@@ -81,16 +76,14 @@
   </div>
 </div>
 
-<!--Google Charts Scirpt-->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../public/js/index.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
 
-<script>
-
-  var drinksdata;
+  var mooddata;
           var output = $.get("/api/tracker/", function (data) {
-                  drinksdata=data;
+                  mooddata=data;
               });
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -101,66 +94,71 @@
   });
 
 
+<!--Script for google charts-->
+
+
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
- 
-
-        function drawChart() {
-       var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Date');
-        data.addColumn('number', 'Values');
-        var drinks_arr;
-        var drinks_length;
-        var date_extract;
-        drinks_length = Object.keys(drinksdata).length;
-        for (i=0;i<drinks_length;i++)
-        {
-            date_extract= drinksdata[i].createdAt.toString();
-            date_extract = date_extract.substring(0,10);
-            if(String(drinks_arr)!= "undefined")
-            {
-              //drinks_arr = drinks_arr + "['" + date_extract + "'," + drinksdata[i].alcohol + "],";
-              drinks_arr = drinks_arr  + date_extract + "," + drinksdata[i].alcohol + ",";
-            }
-            if(String(drinks_arr) == "undefined")
-            {
-              //drinks_arr = "['" + date_extract + "'," + drinksdata[i].alcohol + "],";
-              drinks_arr = date_extract + "," + drinksdata[i].alcohol + ",";
-            }
-        }
-        drinks_arr = drinks_arr.substring(0, drinks_arr.length -1);
-        var newarray = drinks_arr.split(',');
-
-        var newdata = new Array;
-        for (j=0;j<newarray.length;j++)
-        {
-           tempString = "'" + newarray[j] + "'";
-           newdata[j] = tempString;
-           j=j+1;
-           newdata[j] = newarray[j];
-           //console.log(tempString);
-        }
-        var temp1,temp2;
-        for (j=0;j<newdata.length;j++)
-        {
-            temp1 = newdata[j].toString();
-            j=j+1;
-            temp2 = parseInt(newdata[j]);
-            data.addRow([
-              temp1,temp2
-            ]);
-
-        }
   
+        function drawChart() {
+            var button = document.getElementById('change-chart');
+            var chartDiv = document.getElementById('chart_div');
 
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Date');
+            data.addColumn('number', 'Values');
+            //data.addColumn('number', 'Last week');
+            var mood_arr;
+            var mood_length;
+            var date_extract;
+            mood_length = Object.keys(mooddata).length;
+            for (i=0;i<mood_length;i++)
+            {
+                date_extract= mooddata[i].createdAt.toString();
+                date_extract = date_extract.substring(0,10);
+                if(String(mood_arr)!= "undefined")
+                {
+                  //mood_arr = mood_arr + "['" + date_extract + "'," + mooddata[i].moodId + "],";
+                  mood_arr = mood_arr  + date_extract + "," + mooddata[i].moodId + ",";
+                }
+                if(String(mood_arr) == "undefined")
+                {
+                  //mood_arr = "['" + date_extract + "'," + mooddata[i].moodId + "],";
+                  mood_arr = date_extract + "," + mooddata[i].moodId + ",";
+                }
+            }
+            mood_arr = mood_arr.substring(0, mood_arr.length -1);
+            var newarray = mood_arr.split(',');
+
+            var newdata = new Array;
+            for (j=0;j<newarray.length;j++)
+            {
+              tempString = "'" + newarray[j] + "'";
+              newdata[j] = tempString;
+              j=j+1;
+              newdata[j] = newarray[j];
+              //console.log(tempString);
+            }
+            var temp1,temp2;
+            for (j=0;j<newdata.length;j++)
+            {
+                temp1 = newdata[j].toString();
+                j=j+1;
+                temp2 = parseInt(newdata[j]);
+                data.addRow([
+                  temp1,temp2
+                ]);
+
+            }
+  
           var options = {
-            title: 'How much wobbles you got on',
+            title: 'Your Weekly mood Time',
             curveType: 'function',
             legend: { position: 'bottom' } //"position:" can be changed to none, bottom, top, left, right to create legend
           };
   
-          var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
   
           chart.draw(data, options);
         }
-</script>
+  </script>
