@@ -6,7 +6,6 @@ module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define(
         "user", 
         {
-        routeName: DataTypes.STRING,
         firstName: DataTypes.STRING,
         lastName: DataTypes.STRING,
         userName: DataTypes.STRING,
