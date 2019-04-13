@@ -48,26 +48,38 @@
                 <div class="card-title">Add new pixel</div>
                 <form>
                     <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" id="first-name" placeholder="First Name">
+                        <label>Date</label>
+                        <input type="text" class="form-control" id="date" placeholder="Date">
                     </div>
                     <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" id="last-name" placeholder="Last Name">
+                        <label>Mood</label>
+                        <input type="text" class="form-control" id="mood" placeholder="Mood">
                     </div>
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" id="user-name" placeholder="Username">
+                        <label>Caffeine</label>
+                        <input type="number" class="form-control" id="caffeine" placeholder="Caffeine">
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <label>Alcohol</label>
+                        <input type="number" class="form-control" id="alcohol" placeholder="Alcohol">
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <label>Exercise</label>
+                        <input type="number" class="form-control" id="exercise" placeholder="Exercise">
                     </div>
-                    <button id="add-user" type="button" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <label>Screen</label>
+                        <input type="number" class="form-control" id="screen" placeholder="Screen">
+                    </div>
+                    <div class="form-group">
+                        <label>Sleep</label>
+                        <input type="number" class="form-control" id="sleep" placeholder="Sleep">
+                    </div>
+                    <div class="form-group">
+                        <label>User ID</label>
+                        <input type="number" class="form-control" id="user-id" placeholder="User ID">
+                    </div>
+                    <button id="add-pixel" type="button" class="btn btn-primary">Submit</button>
                     <button id="autofill-pixel" type="button" class="btn btn-primary">Autofill</button>
                 </form>
             </div>
@@ -90,7 +102,6 @@
                                                 <p>Email: ${x.email}</p>
                                                 <p>Password: ${x.password}</p><br>`);
                     }
-                    // $("#display").text(data);
                 } else {
                     $("#display").text("There are no users!");
                 }
@@ -100,8 +111,18 @@
         $("#all-pixels").click(function() {
             $.get("/api/pixels", function(data) {
                 console.log(data);
+                $("#display").text("");
                 if (data.length > 0) {
-                    $("#display").text(data);
+                    for (x of data) {
+                        $("#display").append(    `<p>Date: ${x.date}</p>
+                                                <p>Mood: ${x.mood}</p>
+                                                <p>Caffeine: ${x.caffeine}</p>
+                                                <p>Alcohol: ${x.alcohol}</p>
+                                                <p>Exercise: ${x.exercise}</p>
+                                                <p>Screen: ${x.screen}</p>
+                                                <p>Sleep: ${x.sleep}</p>
+                                                <p>User ID: ${x.userId}</p><br>`);
+                    }
                 } else {
                     $("#display").text("There are no pixels!");
                 }
@@ -114,6 +135,17 @@
             $("#user-name").val("adamadamson");
             $("#email").val("adam@adamson.com")
             $("#password").val("madamimadam");
+        });
+
+        $("#autofill-pixel").click(function() {
+            $("#date").val("12-31-2019");
+            $("#mood").val("Neutral");
+            $("#caffeine").val("1");
+            $("#alcohol").val("2")
+            $("#exercise").val("3");
+            $("#screen").val("4");
+            $("#sleep").val("5");
+            $("#user-id").val("6");
         });
 
         $("#add-user").click(function() {
@@ -130,6 +162,25 @@
             $.post("/api/users", newUser)
                 .then(function(data) {
                     $("#display").text("User added!");
+                })
+        });
+
+        $("#add-pixel").click(function() {
+            var newPixel = {
+                date: $("#date").val().trim(),
+                mood: $("#mood").val().trim(),
+                caffeine: $("#caffeine").val().trim(),
+                alcohol: $("#alcohol").val().trim(),
+                exercise: $("#exercise").val().trim(),
+                screen: $("#screen").val().trim(),
+                sleep: $("#sleep").val().trim(),
+                userId: $("#user-id").val().trim()
+            }
+            console.log(newPixel);
+
+            $.post("/api/pixels", newPixel)
+                .then(function(data) {
+                    $("#display").text("Pixel added!");
                 })
         });
 

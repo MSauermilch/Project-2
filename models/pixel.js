@@ -5,7 +5,6 @@ module.exports = function(sequelize, DataTypes) {
   var Pixel = sequelize.define(
     "pixel",
     {
-      routeName: DataTypes.STRING,
       date: DataTypes.STRING,
       mood: DataTypes.STRING,
       caffeine: DataTypes.INTEGER,
