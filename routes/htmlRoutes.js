@@ -47,6 +47,26 @@ module.exports = function(app) {
     });
   });
 
+  // login
+  app.get("/login", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("signIn", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
+  });
+
+  // sign up
+  app.get("/signup", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("signUp", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
