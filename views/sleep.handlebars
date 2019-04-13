@@ -1,61 +1,64 @@
-<div class="container">
-  <div class="wrapper">
-        <!-- Sidebar Holder -->
-        <nav id="sidebar">
+<div id="home">
+  <div class="container">
+
+<div class="wrapper">
+        {{!-- Sidebar Holder --}}
+       <nav id="sidebar">
             <div class="sidebar-header">
                 <h3>Tracking <br>Sidebar</h3>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="/" aria-expanded="false" class="dropdown-toggle">Home</a>
+                    <a href="/" aria-expanded="false" class="dropdown-toggle">Mood</a>
                 </li>
-                <br>
+                  <br>
                 <li class="active">
                     <a href="/coffee" aria-expanded="false" class="dropdown-toggle">Coffee</a>
                 </li>
-                <br>
+                  <br>
                 <li class="active">
                     <a href="/drinks"  aria-expanded="false" class="dropdown-toggle">Drinks</a>
                 </li>
-                <br>
+                  <br>
                 <li class="active">
                     <a href="/exercise" aria-expanded="false" class="dropdown-toggle">Exercise</a>
                 </li>
-                <br>
+                  <br>
                 <li class="active">
                     <a href="/sleep" aria-expanded="false" class="dropdown-toggle">Sleep</a>
                 </li>
-                <br>
+                  <br>
                 <li class="active">
                     <a href="/screen" aria-expanded="false" class="dropdown-toggle">Screen</a>
                 </li>
-                <br>
+                  <br>
             </ul>
             </div>
         </nav>
 
-        <!-- Page Content Holder -->
+        {{!-- Page Content Holder --}}
         <div id="content">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="navbar-btn">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            
-                                <a class="nav-link" href="#" id="login">Log In</a>
-          
-                        </ul>
-                    </div>
                 </div>
-            </nav>
             
-  {{!-- Sidebar --}}
+          {{!--Google Chart and body context --}}
+          <br>
+            <div><center><h3>Sleep Log:</h3></center></div>
+              <br>
+            <div id="curve_chart" style="width: 800px; height: 500px"></div>
+              <br>
+            <div><center><h4><i>Sleep reseluts: "blah"</i></h4></center></div>
+            
+     </div>
+    </div>
+  </div>
+</div>
+
+  {{!-- Sidebar JS script--}}
   <script>
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
@@ -65,21 +68,47 @@
     });
   </script>
 
-      </div>
-    </div>
-  </div>
-</div>
+{{!--Google Charts Scirpt--}}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{{!-- Jquery --}}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{{!-- Index JS --}}
+  <script src="../public/js/index.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="../public/js/index.js"></script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, {
-      direction: 'top'
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        direction: 'top'
+      });
     });
-  });
-</script>
+  </script>
 
-</div>
+  {{!-- Google Chart --}}
+  <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+  
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Days'     , 'This Week',      'Last Week'],
+            ['Monday'   ,  1,                      1],
+            ['Tuesday'  ,  2,                      2],
+            ['Wedneday' ,  7,                      4],
+            ['Thursday' ,  5,                      5],
+            ['Friday'   ,  6,                      6],
+            ['Saturday' ,  10,                     8],
+            ['Sunday'   ,  5,                      1]
+          ]);
+  
+          var options = {
+            title: 'Pillow time this week:',
+            curveType: 'function',
+            legend: { position: 'bottom' } //"position:" can be changed to none, bottom, top, left, right to create legend
+          };
+  
+          var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  
+          chart.draw(data, options);
+        }
+  </script>

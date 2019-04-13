@@ -11,14 +11,14 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/mood", function(req, res) {
-    db.pixel.findAll({}).then(function(dbpixels) {
-      res.render("mood", {
-        msg: "Welcome!",
-        examples: dbpixels
-      });
-    });
-  });
+  // app.get("/mood", function(req, res) {
+  //   db.pixel.findAll({}).then(function(dbpixels) {
+  //     res.render("mood", {
+  //       msg: "Welcome!",
+  //       examples: dbpixels
+  //     });
+  //   });
+  // });
 
   app.get("/coffee", function(req, res) {
     db.pixel.findAll({}).then(function(dbpixels) {
@@ -49,6 +49,44 @@ module.exports = function(app) {
 
   app.get("/demo", function(req, res) {
     res.sendFile("demo.html", { root: "./" });
+  });
+
+  app.get("/screen", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("screen", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
+  });
+
+  // login
+  app.get("/login", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("signIn", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
+  });
+
+  app.get("/exercise", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("exercise", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
+  });
+
+  // sign up
+  app.get("/signup", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("signUp", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
   });
 
   // Render 404 page for any unmatched routes

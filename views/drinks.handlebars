@@ -2,13 +2,13 @@
   <div class="container">
 
 <div class="wrapper">
-        <!-- Sidebar Holder -->
+        {{!-- Sidebar Holder --}}
        <nav id="sidebar">
             <div class="sidebar-header">
                 <h3>Tracking <br>Sidebar</h3>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="/" aria-expanded="false" class="dropdown-toggle">Home</a>
+                    <a href="/" aria-expanded="false" class="dropdown-toggle">Mood</a>
                 </li>
                 <br>
                 <li class="active">
@@ -35,36 +35,31 @@
             </div>
         </nav>
 
-        <!-- Page Content Holder -->
+        {{!-- Page Content Holder --}}
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {{!-- NavBar --}}
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="navbar-btn">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            
-                                <a class="nav-link" href="#" id="login">Log In</a>
-          
-                        </ul>
-                    </div>
                 </div>
-            </nav>
             
-            <!--Google Chart and body context-->
-            <div><h3>Drinks Dranken:</h3></div>
-            <div id="curve_chart" style="width: 900px; height: 500px"></div>
-            <div><h4><i>This weeks intake: "this weeks drinks calculated"</i></h4></div>
+          {{!--Google Chart and body context --}}
+          <br>
+            <center><div><h3>Alcoholic Drinks:</h3></div></center>
+              <br>
+            <center><div id="curve_chart" style="width: 800px; height: 500px"></div></center>
+              <br>
+            <div><center><h4><i>This weeks intake: "this weeks drinks calculated"</i></h4></center></div>
+     </div>
+    </div>
+  </div>
+</div>
 
-            <p>How are we going to input data?</p>
-
-  {{!-- Sidebar --}}
+  {{!-- Sidebar JS script--}}
   <script>
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
@@ -74,27 +69,24 @@
     });
   </script>
 
-      </div>
-    </div>
-  </div>
-</div>
+{{!--Google Charts Scirpt--}}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{{!-- Jquery --}}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{{!-- Index JS --}}
+  <script src="../public/js/index.js"></script>
 
-<!--Google Charts Scirpt-->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="../public/js/index.js"></script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, {
-      direction: 'top'
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        direction: 'top'
+      });
     });
-  });
-</script>
+  </script>
 
   {{!-- Google Chart --}}
-   <script type="text/javascript">
+  <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
   
@@ -120,4 +112,4 @@
   
           chart.draw(data, options);
         }
-</script>
+  </script>
