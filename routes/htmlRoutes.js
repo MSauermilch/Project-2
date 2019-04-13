@@ -11,14 +11,14 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/mood", function(req, res) {
-    db.pixel.findAll({}).then(function(dbpixels) {
-      res.render("mood", {
-        msg: "Welcome!",
-        examples: dbpixels
-      });
-    });
-  });
+  // app.get("/mood", function(req, res) {
+  //   db.pixel.findAll({}).then(function(dbpixels) {
+  //     res.render("mood", {
+  //       msg: "Welcome!",
+  //       examples: dbpixels
+  //     });
+  //   });
+  // });
 
   app.get("/coffee", function(req, res) {
     db.pixel.findAll({}).then(function(dbpixels) {
@@ -41,6 +41,24 @@ module.exports = function(app) {
   app.get("/sleep", function(req, res) {
     db.pixel.findAll({}).then(function(dbpixels) {
       res.render("sleep", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
+  });
+
+  app.get("/screen", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("screen", {
+        msg: "Welcome!",
+        examples: dbpixels
+      });
+    });
+  });
+
+  app.get("/exercise", function(req, res) {
+    db.pixel.findAll({}).then(function(dbpixels) {
+      res.render("exercise", {
         msg: "Welcome!",
         examples: dbpixels
       });

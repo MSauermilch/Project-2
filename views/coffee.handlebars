@@ -1,12 +1,14 @@
-<div class="container">
-  <div class="wrapper">
-        <!-- Sidebar Holder -->
-        <nav id="sidebar">
+<div id="home">
+  <div class="container">
+
+<div class="wrapper">
+        {{!-- Sidebar Holder --}}
+       <nav id="sidebar">
             <div class="sidebar-header">
                 <h3>Tracking <br>Sidebar</h3>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="/" aria-expanded="false" class="dropdown-toggle">Home</a>
+                    <a href="/" aria-expanded="false" class="dropdown-toggle">Mood</a>
                 </li>
                 <br>
                 <li class="active">
@@ -33,43 +35,31 @@
             </div>
         </nav>
 
-        <!-- Page Content Holder -->
+        {{!-- Page Content Holder --}}
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {{!-- NavBar --}}
                 <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="navbar-btn">  {{!-- KEEP! --}}
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            
-                                <a class="nav-link" href="#" id="login">Log In</a>
-          
-                        </ul>
-                    </div>
                 </div>
-            </nav>
             
-        <div><h3>Coffee Intake:</h3></div>
-        <div id="chart_div" style="width: 400px; height: 500px;"></div>
+          {{!--Google Chart and body context --}}
           <br>
-        <div><h4><i>Maybe use handlebars to write a code block that adds "this weeks" and "last weeks" columns together. </i></h4></div>
-        <div><h4><i>This weeks intake: "This weeks calculated( X cups)"
-                                       "Caffine consumed ( X cups * 95mgs)"
-        </i></h4></div>
+            <center><div><h3>Coffee Intake:</h3></div></center>
+              <br>
+            <center><div id="curve_chart" style="width: 800px; height: 500px"></div></center>
+              <br>
+            <div><center><h4><i>This weeks caffine intake: "this weeks drinks calculated"</i></h4></center></div>
+     </div>
+    </div>
+  </div>
+</div>
 
-        <div><h4><i>This weeks intake: "Last weeks calculated( X cups)"
-                                       "Caffine consumed ( X cups * 95mgs)"
-        </i></h4></div>
-
-        <p>How are we going to input data?</p>
-
-  {{!-- Sidebar --}}
+  {{!-- Sidebar JS script--}}
   <script>
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
@@ -79,93 +69,47 @@
     });
   </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="../public/js/index.js"></script>
+{{!--Google Charts Scirpt--}}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{{!-- Jquery --}}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{{!-- Index JS --}}
+  <script src="../public/js/index.js"></script>
 
-<!--Script for google charts-->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, {
-      direction: 'top'
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        direction: 'top'
+      });
     });
-  });
+  </script>
 
-  //Google Charts
-   google.charts.load('current', {'packages':['corechart', 'scatter']});
-      google.charts.setOnLoadCallback(drawStuff);
-
-      function drawStuff() {
-
-        var button = document.getElementById('change-chart');
-        var chartDiv = document.getElementById('chart_div');
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', '');
-        data.addColumn('number', 'This week');
-        data.addColumn('number', 'Last week');
-
-        data.addRows([
-          ['Monday', 6, 7],
-          ['Tuesday', 3, 5],
-          ['Wednesday', 2, 3],
-          ['Thursday', 2, 2],
-          ['Friday', 4, 2],
-          ['Saturday', 2, 1],
-          ['Sunday', 1, 2]
-        ]);
-
-        var materialOptions = {
-          chart: {
-           // title: 'Coffee Intake',
-            // subtitle: 'based on hours studied'
-          },
-          width: 650,
-          height: 500,
-          series: {
-            0: {axis: 'hours studied'},
-            1: {axis: 'final grade'}
-          },
-          axes: {
-            y: {
-              'hours studied': {label: 'Cups'},
-              //'right title': {label: 'Final Exam Grade'}
-            }
-          }
-        };
-
-        var classicOptions = {
-          width: 650,
-          series: {
-            0: {targetAxisIndex: 0},
-            1: {targetAxisIndex: 1}
-          },
-          title: 'Students\' Final Grades - based on hours studied',
-
-          vAxes: {
-            // Adds titles to each axis.
-            0: {title: 'Hours Studied'},
-            1: {title: 'Final Exam Grade'}
-          }
-        };
-
-        function drawMaterialChart() {
-          var materialChart = new google.charts.Scatter(chartDiv);
-          materialChart.draw(data, google.charts.Scatter.convertOptions(materialOptions));
-          button.innerText = 'Change to Classic';
-          button.onclick = drawClassicChart;
+  {{!-- Google Chart --}}
+  <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+  
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Days'     , 'This Week',      'Last Week'],
+            ['Monday'   ,  1,                      1],
+            ['Tuesday'  ,  2,                      2],
+            ['Wedneday' ,  7,                      4],
+            ['Thursday' ,  5,                      5],
+            ['Friday'   ,  6,                      6],
+            ['Saturday' ,  10,                     8],
+            ['Sunday'   ,  5,                      1]
+          ]);
+  
+          var options = {
+            title: 'Your caffine intake this week: ',
+            curveType: 'function',
+            legend: { position: 'bottom' } //"position:" can be changed to none, bottom, top, left, right to create legend
+          };
+  
+          var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  
+          chart.draw(data, options);
         }
-
-        function drawClassicChart() {
-          var classicChart = new google.visualization.ScatterChart(chartDiv);
-          classicChart.draw(data, classicOptions);
-          button.innerText = 'Change to Material';
-          button.onclick = drawMaterialChart;
-        }
-
-        drawMaterialChart();
-    };
-</script>
-</div>
+  </script>
