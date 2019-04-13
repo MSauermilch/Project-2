@@ -6,7 +6,7 @@ module.exports = function(app) {
   app.get("/api/users", function(req, res) {
     db.user.findAll({}).then(function(allUsers) {
       console.log(allUsers);
-      res.json(allUsers);
+      return res.json(allUsers);
     });
   });
 
@@ -15,7 +15,10 @@ module.exports = function(app) {
     // the user consists of a name, a username and a password
     // the object that is passed should be
     // { name: aName,
+    //   firstName: aFirstName,
+    //   lastName: aLastName,
     //   userName: aUserName,
+    //   email: aEmail,
     //   password: aPassword
     // }
     var user = req.body;

@@ -38,6 +38,10 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/demo", function(req, res) {
+    res.sendFile("demo.html", { root: "./" });
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
