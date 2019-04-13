@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
+    "password": "PizzaPizza69",
     "database": "pixelsdb",
     "host": "localhost",
     "dialect": "mysql"
