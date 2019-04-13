@@ -47,6 +47,10 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/demo", function(req, res) {
+    res.sendFile("demo.html", { root: "./" });
+  });
+
   app.get("/screen", function(req, res) {
     db.pixel.findAll({}).then(function(dbpixels) {
       res.render("screen", {
@@ -74,7 +78,7 @@ module.exports = function(app) {
       });
     });
   });
-  
+
   // sign up
   app.get("/signup", function(req, res) {
     db.pixel.findAll({}).then(function(dbpixels) {
