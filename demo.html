@@ -91,11 +91,22 @@
                                 <label>User ID</label>
                                 <input type="number" class="form-control" id="select-user-id" placeholder="User ID">
                             </div>
-                            
                             <button id="get-user-pixels" type="button" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
-        </div>
+            </div>
+            <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Get a single user by username</div>
+                        <form>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" id="get-user-by-id" placeholder="User ID">
+                            </div>
+                            <button id="get-user" type="button" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+            </div>
         <div id="display"></div>
     </div>
 
@@ -199,7 +210,7 @@
         $("#get-user-pixels").click(function() {
             $("#display").text("");
             var theUser = {
-                            userId: $("#select-user-id").val().trim()
+                userId: $("#select-user-id").val().trim()
             };
             $.post("/api/user/pixels", theUser)
                 .then(function(data) {
@@ -215,6 +226,17 @@
             // $("#display").text(`You've selected ${theUser}`);
 
         })
+
+        $("#get-user").click(function() {
+            $("#display").text("");
+            var theUserName = {
+                username: $("#get-user-by-id").val().trim();
+            }
+            $.post("/api/one/user", theUser)
+                .then(function(data) {
+                    console.log(data);
+                });
+        });
         
     </script>
 </body>

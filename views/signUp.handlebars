@@ -12,7 +12,7 @@
                 <div class="card-content white-text">
                     <span class="card-title">Create your account</span>
                 </div>
-                <form action="" method="POST">
+                <form action="/api/users" method="POST">
                     <div class="card-action">
                         <label for="firstName" class="white-text">First Name</label>
                         <input class="white-text" type="text" name="firstName">
@@ -20,11 +20,14 @@
                         <label for="lastName" class="white-text">Last Name</label>
                         <input class="white-text" type="text" name="lastName">
 
+                        <label for="userName" class="white-text">Username</label>
+                        <input class="white-text" type="text" name="userName">
+
                         <label for="email" class="white-text">Email</label>
                         <input class="white-text" type="email" name="email">
 
-                        <label for="password1" class="white-text">Password</label>
-                        <input class="white-text" type="password" maxlength="20" name="password1">
+                        <label for="password" class="white-text">Password</label>
+                        <input class="white-text" type="password" maxlength="20" name="password">
 
                         <label for="password2" class="white-text">Re-enter your password</label>
                         <input class="white-text" type="password" maxlength="20" name="password2">

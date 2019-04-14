@@ -9,6 +9,21 @@ module.exports = function(app) {
     });
   });
 
+  // Get one user
+  app.post("/api/getuser", function(req, res) {
+    console.log(req.body.email);
+    db.user
+      .findOne({
+        where: {
+          email: req.body.email
+        }
+      })
+      .then(function(aUser) {
+        console.log(aUser);
+        return res.json(aUser);
+      });
+  });
+
   // Add user to database
   app.post("/api/users", function(req, res) {
     // the user consists of a name, a username and a password
@@ -21,7 +36,14 @@ module.exports = function(app) {
     //   password: aPassword
     // }
     var user = req.body;
-    db.user.create(user);
+    db.user.create(user).then(function(newUser) {
+      console.log(newUser);
+      res.render("index", {
+        msg: "Welcome!",
+        examples: newUser
+      });
+      // return res.json(newUser);
+    });
     console.log("Added a new user");
   });
 
@@ -50,7 +72,7 @@ module.exports = function(app) {
     console.log("added a new pixel");
   });
 
-  // Get all pixels associated with a use
+  // Get all pixels associated with a user
   app.post("/api/user/pixels", function(req, res) {
     var theUserId = req.body.userId;
     console.log(theUserId);

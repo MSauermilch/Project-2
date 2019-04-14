@@ -166,23 +166,36 @@
       var routeName = 'test';
       var userId = 1;
       var date = '2002';
+      // The data represents the new pixel to be created.
+      // It can also be used to replace/update an existing pixel.
       var data = {
-        moodId: mood,
-        caffeine,
-        alcohol,
-        sleep,
-        exercise,
-        screen,
-        routeName,
-        date: date
+        date: date,
+        mood: mood,
+        caffeine: caffeine,
+        alcohol: alcohol,
+        exercise: screen,
+        screen: screen,
+        sleep: sleep,
+        userId: userId
       }
+
+          // {
+    //  date: aDate,
+    //  mood: aMood,
+    //  caffeine: aCaffeine,
+    //  alcohol: aAlcohol,
+    //  exercise: aExercise,
+    //  screen: aScreen,
+    //  sleep: aSleep,
+    //  userId: aUserId
+    // }
 
       
 
       //var querystring = "INSERT INTO PIXELS(routeName, userId, date, moodId, caffeine, alcohol, exercise, screen, sleep) VALUES(test,2," + datevalue + "," + mood + "," + caffeine + "," + drinks + "," + calories + "," + screentime + "," + sleep + ");";
       //alert(querystring);
       $.ajax({
-        url: '/api/tracker/',
+        url: '/api/pixels/',
         method: "post",
         data,
         success: function () {
